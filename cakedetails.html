@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cake</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="details">
+    <div class="navbar">
+        <ul >
+          <li class="logo"><a href="cake.html">Euphoria Cakes</a></li>
+          <div id="nav">
+          <li><a href="cake.html">Home</a></li>
+          <li><a href="cakedetails.html">Cakes</a></li>
+          <li><a href="cake.html">Categories</a></li>
+          <li><a href="cake.html">About Us</a></li>
+          <li><a href="cart.html" class="cart-nav">Cart(<span id="cart-count">0</span>)</a></li>
+          </div>
+        </ul>
+      </div>
+      <h2>Taste the Magic in Every Bite</h2>
+      <div id="shop">
+        <div class="row1">
+        <div class="cake1">
+          <img src="https://www.kitchenaid.com/is/image/content/dam/business-unit/kitchenaid/en-us/marketing-content/site-assets/page-content/pinch-of-help/35-types-of-cakes/35-Types-of-Cakes_Image-CC8_v2.jpg?fit=constrain&fmt=png-alpha&wid=2875" width="130" height="100" >
+          <p> CHOCOLATE BEET CAKE</p>
+          <p>₹2,500</p>
+          <p>Rating:4.9<span class="star">&#9733</span>(5893 reviews)</p>
+          <button onclick="addToCart('Chocolate Beet Cake', 2500, 'https://www.kitchenaid.com/is/image/content/dam/business-unit/kitchenaid/en-us/marketing-content/site-assets/page-content/pinch-of-help/35-types-of-cakes/35-Types-of-Cakes_Image-CC8_v2.jpg?fit=constrain&fmt=png-alpha&wid=2875')" class="cart">Add to Cart</button>
+
+        </div> 
+        <div class="cake2">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJeNNUi3JkfvYoxTFcG-NQmlYPpvmU3C_y5g&s"width="130" height="100" >
+            <p> BUTTERFLY CAKE</p>
+            <p>₹3,599</p>
+            <p>Rating:4.8<span class="star">&#9733</span>(6873 reviews)</p>
+            <button onclick="addToCart('Butterfly cake', 3599,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJeNNUi3JkfvYoxTFcG-NQmlYPpvmU3C_y5g&s')" class="cart">Add to Cart</button>
+      </div>
+      <div class="cake3">
+        <img src="https://m.media-amazon.com/images/I/71vFNICkp3L._AC_UF1000,1000_QL80_.jpg" width="130" height="100">
+        <p> BLACK FOREST</p>
+        <p>₹549</p>
+        <p>Rating:4.7<span class="star">&#9733</span>(2333 reviews)</p>
+        <button onclick="addToCart('Blackforest cake', 3599,'https://m.media-amazon.com/images/I/71vFNICkp3L._AC_UF1000,1000_QL80_.jpg')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+     <div class="row2">
+       <div class="cake4">
+        <img src="https://media.wishque.com/data/images/products/10607/72090352_165099655174_0.39559000-1697694487.jpg"width="130" height="100" >
+        <p> WHITEFOREST CAKE</p>
+        <p>₹425</p>
+        <p>Rating:4.6<span class="star">&#9733</span>(1999 reviews)</p>
+        <button onclick="addToCart('Whiteforest cake', 3599,'https://media.wishque.com/data/images/products/10607/72090352_165099655174_0.39559000-1697694487.jpg')" class="cart">Add to Cart</button>
+        </div>
+        <div class="cake5">
+          <img src="https://www.cakeforest.co.uk/cdn/shop/files/WhatsAppImage2023-12-15at16.02.01.jpg?v=1702661268&width=480" width="130" height="100">
+          <p>Enchanted Forest</p>
+          <p>₹5,999</p>
+          <p>Rating:4.9<span class="star">&#9733</span>(6873 reviews)</p>
+          <button onclick="addToCart('Enchanted forest cake', 3599,'https://www.cakeforest.co.uk/cdn/shop/files/WhatsAppImage2023-12-15at16.02.01.jpg?v=1702661268&width=480')" class="cart">Add to Cart</button>
+        </div>
+        <div class="cake6">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUkl1N9YqZl-Eaxcxr-jSIYNvXSAWOd4zqhQ&s" width="130" height="100">
+          <p>FAIRY LAND CAKE</p>
+          <p>₹3,500</p>
+          <p>Rating:4.7<span class="star">&#9733</span>(6873 reviews)</p>
+          <button onclick="addToCart('Butterfly cake', 3599,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUkl1N9YqZl-Eaxcxr-jSIYNvXSAWOd4zqhQ&s')" width="130" height="100')" class="cart">Add to Cart</button>
+        </div>
+      </div>
+      <script>
+        
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartCount;
+            updateTotalAmount(); // Call to update total amount whenever cart count is updated
+        }
+    
+        
+        function updateTotalAmount() {
+            const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            document.getElementById('total-amount').textContent = `Total: ₹${totalAmount}`;
+        }
+    
+        
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            if (!cartItemsContainer) return; 
+            
+            cartItemsContainer.innerHTML = '';
+    
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                document.getElementById('total-amount').textContent = 'Total: ₹0'; 
+                return;
+            }
+    
+           
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" width="100" height="100">
+                    <p>${item.name} - ₹${item.price} x ${item.quantity}</p>
+                    <button class="remove-btn" data-index="${index}">Remove</button>
+                `;
+                cartItemsContainer.appendChild(itemDiv);
+            });
+           
+    
+            updateTotalAmount(); 
+        }
+        
+    
+       
+        function removeFromCart(event) {
+            const index = event.target.getAttribute('data-index');
+            cart.splice(index, 1); 
+            localStorage.setItem('cart', JSON.stringify(cart)); 
+            renderCartItems();
+            updateCartCount(); 
+        }
+    
+        
+        function addToCart(name, price, image) {
+            const existingItem = cart.find(item => item.name === name);
+    
+            if (existingItem) {
+                existingItem.quantity += 1; 
+            } else {
+                cart.push({ name, price, image, quantity: 1 }); 
+            }
+    
+            localStorage.setItem('cart', JSON.stringify(cart)); 
+            updateCartCount(); 
+        }
+    
+      
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount(); 
+            renderCartItems(); 
+            const cartItemsContainer = document.getElementById('cart-items');
+            if (cartItemsContainer) {
+                cartItemsContainer.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('remove-btn')) {
+                        removeFromCart(event); 
+                    }
+                });
+            }
+        });
+    </script>
+    
+     
+    
+
+    
+    <footer>
+      <div class="footer-container">
+          <div class="footer-info">
+              <p>&copy; 2024 Euphoria Cakes. All rights reserved.</p>
+              <p>Contact us: info@euphoriacakes.com | Phone: (123) 456-7890</p>
+          </div>
+          <div class="footer-socials">
+              <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+              <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+              <a href="https://www.twitter.com/" target="_blank">Twitter</a>
+          </div>
+      </div>
+    </footer>
+</body>
+</html>

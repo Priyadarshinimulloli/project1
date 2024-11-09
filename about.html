@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul >
+          <li class="logo"><a href="cake.html">Euphoria Cakes</a></li>
+          <div id="nav">
+          <li><a href="cake.html">Home</a></li>
+          <li><a href="cakedetails.html">Cakes</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="cart.html" class="cart-nav">Cart(<span id="cart-count">0</span>)</a></li>
+          </div>
+        </ul>
+      </div>
+    <div id="abt">
+    <section class="introduction">
+        <h2>Welcome to Euphoria Cakes!</h2>
+        <p>At Euphoria Cakes, we don’t just bake; we create experiences. Each cake is a labor of love, crafted to bring joy and sweetness to your celebrations. Whether it’s a birthday, wedding, or any special occasion, we believe that our cakes should not only taste delightful but also look stunning and tell a story.</p>
+    </section>
+
+    <section class="mission-vision">
+        <h2>Our Mission & Vision</h2>
+        <div class="mission-vision-content">
+            <p><strong>Mission:</strong> Our mission is to spread joy through our delicious cakes, made from the finest ingredients and a sprinkle of love. We aim to create lasting memories for our customers, one slice at a time.</p>
+            <p><strong>Vision:</strong> We envision Euphoria Cakes as a beloved bakery where everyone can find their favorite cake. Our goal is to become a community hub for cake lovers, fostering connections through shared experiences and delightful flavors.</p>
+        </div>
+    </section>
+    <section class="why-choose-us">
+        <h2>Why Choose Us?</h2>
+        <p>Here’s what sets Euphoria Cakes apart:</p>
+        <ul>
+            <li>✨ **Artisan Quality**: We use only the finest, locally sourced ingredients, ensuring every bite is fresh and flavorful.</li>
+            <li>🎨 **Custom Creations**: Our cakes are tailored to reflect your vision, whether it's a whimsical design or an elegant classic.</li>
+            <li>🌟 **Community-Focused**: We are dedicated to giving back. A portion of our proceeds goes to local charities and initiatives.</li>
+            <li>🥳 **Memorable Experiences**: Beyond cakes, we create moments of happiness, making your celebrations unforgettable.</li>
+        </ul>
+    </section>
+    <section class="community-engagement">
+        <h2>Our Commitment to the Community</h2>
+        <p>At Euphoria Cakes, we believe in the power of community. That's why we actively engage in local events and initiatives. From sponsoring local sports teams to hosting charity bake sales, we strive to give back and support the neighborhoods that have supported us.</p>
+        <ul>
+            <li>❤️ **Baking Classes**: Join our hands-on baking classes where we teach you the art of cake making while fostering a love for baking in our community.</li>
+            <li>🤝 **Collaboration with Local Farms**: We partner with local farms to source fresh, organic ingredients, ensuring quality while supporting our community's economy.</li>
+            <li>🌍 **Sustainable Practices**: We are committed to sustainability, using eco-friendly packaging and minimizing food waste through creative solutions.</li>
+        </ul>
+    </section>
+    <section class="join-us">
+        <h2>Join Our Cake Family!</h2>
+        <p>We invite you to be part of our journey. Whether you're a lifelong fan or a first-time visitor, there's always a place for you at Euphoria Cakes. Sign up for our newsletter to stay updated on new flavors, special offers, and events. We can't wait to celebrate with you!</p>
+        <form>
+            <label for="email">Subscribe to our newsletter:</label>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+</div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2024 Euphoria Cakes. All rights reserved.</p>
+                <p>Contact us: info@euphoriacakes.com | Phone: (123) 456-7890</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+                <a href="https://www.twitter.com/" target="_blank">Twitter</a>
+            </div>
+        </div>
+
+      </footer>
+      <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+      
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart)); 
+            updateCartCount();
+        }
+      
+        
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+      </script>
+</body>
+</html>
